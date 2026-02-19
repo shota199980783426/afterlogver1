@@ -1,22 +1,34 @@
-// app/layout.tsx
-import type { Metadata, Viewport } from "next";
+import type { Metadata } from "next";
 import "./globals.css";
-import BgClient from "./bg-client";
 
 export const metadata: Metadata = {
   title: "Afterlog",
   description: "Focused, Quiet, Premium",
+  applicationName: "Afterlog",
+
+  // ✅ PWA manifest（public/manifest.webmanifest）
   manifest: "/manifest.webmanifest",
+
+  // ✅ アイコン（Next.js App Router の公式ルート）
+  // - app/icon.png を自動で拾うが、明示しておく
+  // - app/apple-icon.png が iOS のホーム画面で強い
   icons: {
     icon: [
-      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
-      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+      { url: "/icon.png", sizes: "512x512", type: "image/png" }
     ],
-    apple: [{ url: "/apple-touch-icon.png" }],
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" }
+    ]
   },
-};
 
-export const viewport: Viewport = {
+  // ✅ iOSでアプリ化（インストール）寄りの指定
+  appleWebApp: {
+    capable: true,
+    title: "Afterlog",
+    statusBarStyle: "black-translucent"
+  },
+
+  // ✅ テーマ色（アドレスバー/ステータスバー）
   themeColor: "#000000",
 };
 
@@ -27,10 +39,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body>
-        {/* TopBar / LivingBackground / state handling は Client 側に寄せる */}
-        <BgClient>{children}</BgClient>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

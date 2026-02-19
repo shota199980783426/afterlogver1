@@ -1,0 +1,23 @@
+{
+  "name": "Afterlog",
+  "short_name": "Afterlog",
+  "description": "Close the day quietly.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "lang": "ja",
+  "icons": [
+    {
+      "src": "/afterlog-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/afterlog-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

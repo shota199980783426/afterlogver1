@@ -1,21 +1,33 @@
-// app/layout.tsx
-import type { Metadata } from "next";
 import "./globals.css";
-import BgClient from "./bg-client";
+import type { Metadata } from "next";
+import LivingBackground from "@/components/LivingBackground";
+import TopBar from "@/components/TopBar";
 
 export const metadata: Metadata = {
   title: "Afterlog",
-  description: "Close the day quietly.",
+  description: "Focused, Quiet, Premium journaling",
+  icons: {
+    icon: "/app-icon.png",
+    apple: "/app-icon.png",
+  },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="ja">
       <body>
-        <BgClient />
-        <div className="afterlog-app">{children}</div>
+        {/* 背景（クライアント側のみで描画） */}
+        <LivingBackground />
+
+        {/* UIレイヤー */}
+        <div className="afterlog-app">
+          <TopBar />
+          <main>{children}</main>
+        </div>
       </body>
     </html>
   );
